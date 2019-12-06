@@ -50,7 +50,7 @@ function loadConfig(configFile) {
 
 	nconf.defaults({
 		base_dir: dirname,
-		themes_path: path.join(dirname, 'node_modules'),
+		themes_path: path.join(dirname, 'themes'),
 		upload_path: 'public/uploads',
 		views_dir: path.join(dirname, 'build/public/templates'),
 		version: pkg.version,

@@ -24,12 +24,16 @@ const themeNamePattern = /^(@.*?\/)?nodebb-theme-.*$/;
 
 Themes.get = async () => {
 	const themePath = nconf.get('themes_path');
+
+	console.log('themePath 1 ====> :', themePath)
 	if (typeof themePath !== 'string') {
 		return [];
 	}
 
 	let themes = await getThemes(themePath);
+	console.log('themes 1 ====> :', themes)
 	themes = _.flatten(themes).filter(Boolean);
+
 	themes = await Promise.all(themes.map(async (theme) => {
 		const config = path.join(themePath, theme, 'theme.json');
 		try {
@@ -74,6 +78,7 @@ async function getThemes(themePath) {
 			}
 
 			const themes = await getThemes(path.join(themePath, dir));
+			console.log('themePath 2 ====> :', themes)
 			return themes.map(theme => path.join(dir, theme));
 		} catch (err) {
 			if (err.code === 'ENOENT') {

@@ -128,7 +128,6 @@
 				<div class="bar"></div>
 				<div class="bar"></div>
 			</div>
-			<h1 id="main-page-title"></h1>
 		</div>
 
 		<ul class="quick-actions hidden-xs hidden-sm">
