@@ -26,8 +26,8 @@ connection.getConnectionString = function (mongo) {
 	}
 	const dbName = mongo.database;
 	if (dbName === undefined || dbName === '') {
-		winston.warn('You have no database name, using "nodebb"');
-		mongo.database = 'nodebb';
+		winston.warn('You have no database name, using "buzz"');
+		mongo.database = 'buzz';
 	}
 
 	var hosts = mongo.host.split(',');

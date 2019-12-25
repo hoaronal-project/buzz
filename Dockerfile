@@ -10,7 +10,7 @@ COPY install/package.json /usr/src/app/package.json
 
 RUN npm install --only=prod && \
     npm cache clean --force
-    
+
 COPY . /usr/src/app
 
 ENV NODE_ENV=production \
@@ -19,5 +19,5 @@ ENV NODE_ENV=production \
 
 EXPOSE 4567
 
-CMD ./nodebb start
+CMD ./node start
 

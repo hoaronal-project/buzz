@@ -10,7 +10,7 @@ var languages = require('../languages');
 module.exports = function (middleware) {
 	middleware.addHeaders = function addHeaders(req, res, next) {
 		var headers = {
-			'X-Powered-By': encodeURI(meta.config['powered-by'] || 'NodeBB'),
+			'X-Powered-By': encodeURI(meta.config['powered-by'] || 'Buzz'),
 			'X-Frame-Options': meta.config['allow-from-uri'] ? 'ALLOW-FROM ' + encodeURI(meta.config['allow-from-uri']) : 'SAMEORIGIN',
 			'Access-Control-Allow-Methods': encodeURI(meta.config['access-control-allow-methods'] || ''),
 			'Access-Control-Allow-Headers': encodeURI(meta.config['access-control-allow-headers'] || ''),

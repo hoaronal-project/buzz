@@ -95,7 +95,7 @@ module.exports = function (middleware) {
 					scripts: results.scripts,
 					'cache-buster': meta.config['cache-buster'] || '',
 					env: !!process.env.NODE_ENV,
-					title: (acpPath || 'Dashboard') + ' | NodeBB Admin Control Panel',
+					title: (acpPath || 'Dashboard') + ' | Admin Control Panel',
 					bodyClass: data.bodyClass,
 					version: version,
 					latestVersion: results.latestVersion,

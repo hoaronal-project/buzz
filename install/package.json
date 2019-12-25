@@ -1,17 +1,12 @@
 {
-    "name": "nodebb",
+    "name": "buzz",
     "license": "GPL-3.0",
-    "description": "NodeBB Forum",
+    "description": "Buzz Forum",
     "version": "1.13.1",
-    "homepage": "http://www.nodebb.org",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/NodeBB/NodeBB/"
-    },
     "main": "app.js",
     "scripts": {
         "start": "node loader.js",
-        "lint": "eslint --cache ./nodebb .",
+        "lint": "eslint --cache ./node .",
         "pretest": "npm run lint",
         "test": "nyc --reporter=html --reporter=text-summary mocha",
         "coveralls": "nyc report --reporter=text-lcov | coveralls && rm -r coverage"
@@ -88,10 +83,6 @@
         "nodebb-plugin-soundpack-default": "1.0.0",
         "nodebb-plugin-spam-be-gone": "0.6.7",
         "nodebb-rewards-essentials": "0.1.2",
-        "nodebb-theme-lavender": "5.0.11",
-        "nodebb-theme-persona": "10.1.30",
-        "nodebb-theme-slick": "1.2.28",
-        "nodebb-theme-vanilla": "11.1.12",
         "nodebb-widget-essentials": "4.0.17",
         "nodemailer": "^6.0.0",
         "passport": "^0.4.0",
@@ -147,27 +138,7 @@
         "nyc": "14.1.1",
         "smtp-server": "3.5.0"
     },
-    "bugs": {
-        "url": "https://github.com/NodeBB/NodeBB/issues"
-    },
     "engines": {
         "node": ">=8"
-    },
-    "maintainers": [
-        {
-            "name": "Andrew Rodrigues",
-            "email": "andrew@nodebb.org",
-            "url": "https://github.com/psychobunny"
-        },
-        {
-            "name": "Julian Lam",
-            "email": "julian@nodebb.org",
-            "url": "https://github.com/julianlam"
-        },
-        {
-            "name": "Barış Soner Uşaklı",
-            "email": "baris@nodebb.org",
-            "url": "https://github.com/barisusakli"
-        }
-    ]
+    }
 }

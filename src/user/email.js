@@ -73,7 +73,7 @@ UserEmail.sendValidationEmail = async function (uid, options) {
 		confirm_link: confirm_link,
 		confirm_code: confirm_code,
 
-		subject: options.subject || '[[email:welcome-to, ' + (meta.config.title || meta.config.browserTitle || 'NodeBB') + ']]',
+		subject: options.subject || '[[email:welcome-to, ' + (meta.config.title || meta.config.browserTitle || 'Buzz') + ']]',
 		template: options.template || 'welcome',
 		uid: uid,
 	};

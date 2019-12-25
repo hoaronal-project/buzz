@@ -17,8 +17,8 @@ connection.getConnectionOptions = function (postgres) {
 	}
 	const dbName = postgres.database;
 	if (dbName === undefined || dbName === '') {
-		winston.warn('You have no database name, using "nodebb"');
-		postgres.database = 'nodebb';
+		winston.warn('You have no database name, using "buzz"');
+		postgres.database = 'buzz';
 	}
 
 	var connOptions = {

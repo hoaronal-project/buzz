@@ -41,21 +41,21 @@ mongoModule.questions = [
 	{
 		name: 'mongo:username',
 		description: 'MongoDB username',
-		default: nconf.get('mongo:username') || '',
+		default: nconf.get('mongo:username') || 'buzz',
 		ask: isUriNotSpecified,
 	},
 	{
 		name: 'mongo:password',
 		description: 'Password of your MongoDB database',
-		default: nconf.get('mongo:password') || '',
-		hidden: true,
+		default: nconf.get('mongo:password') || 'buzz',
+		hidden: false,
 		ask: isUriNotSpecified,
 		before: function (value) { value = value || nconf.get('mongo:password') || ''; return value; },
 	},
 	{
 		name: 'mongo:database',
 		description: 'MongoDB database name',
-		default: nconf.get('mongo:database') || 'nodebb',
+		default: nconf.get('mongo:database') || 'buzz',
 		ask: isUriNotSpecified,
 	},
 ];
@@ -98,7 +98,7 @@ mongoModule.checkCompatibility = function (callback) {
 
 mongoModule.checkCompatibilityVersion = function (version, callback) {
 	if (semver.lt(version, '2.0.0')) {
-		return callback(new Error('The `mongodb` package is out-of-date, please run `./nodebb setup` again.'));
+		return callback(new Error('The `mongodb` package is out-of-date, please run `./node setup` again.'));
 	}
 
 	callback();

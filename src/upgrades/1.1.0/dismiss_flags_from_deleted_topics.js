@@ -41,7 +41,6 @@ module.exports = {
 };
 
 // copied from core since this function was removed
-// https://github.com/NodeBB/NodeBB/blob/v1.x.x/src/posts/flags.js
 function dismissFlag(pid, callback) {
 	async.waterfall([
 		function (next) {

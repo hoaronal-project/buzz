@@ -1,7 +1,7 @@
 {
-    "title": "NodeBB",
+    "title": "Buzz",
     "showSiteTitle": 1,
-    "defaultLang": "en-GB",
+    "defaultLang": "en-US",
     "loginDays": 14,
     "loginSeconds": 0,
     "loginAttempts": 5,

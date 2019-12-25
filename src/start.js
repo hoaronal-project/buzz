@@ -51,12 +51,12 @@ start.start = async function () {
 	} catch (err) {
 		switch (err.message) {
 		case 'dependencies-out-of-date':
-			winston.error('One or more of NodeBB\'s dependent packages are out-of-date. Please run the following command to update them:');
-			winston.error('    ./nodebb upgrade');
+			winston.error('One or more of Application\'s dependent packages are out-of-date. Please run the following command to update them:');
+			winston.error('    ./node upgrade');
 			break;
 		case 'dependencies-missing':
-			winston.error('One or more of NodeBB\'s dependent packages are missing. Please run the following command to update them:');
-			winston.error('    ./nodebb upgrade');
+			winston.error('One or more of application\'s dependent packages are missing. Please run the following command to update them:');
+			winston.error('    ./node upgrade');
 			break;
 		default:
 			winston.error(err);
@@ -98,7 +98,7 @@ function setupConfigs() {
 
 function printStartupInfo() {
 	if (nconf.get('isPrimary') === 'true') {
-		winston.info('Initializing NodeBB v%s %s', nconf.get('version'), nconf.get('url'));
+		winston.info('Initializing application v%s %s', nconf.get('version'), nconf.get('url'));
 
 		const host = nconf.get(nconf.get('database') + ':host');
 		const storeLocation = host ? 'at ' + host + (!host.includes('/') ? ':' + nconf.get(nconf.get('database') + ':port') : '') : '';

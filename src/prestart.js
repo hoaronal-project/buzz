@@ -66,7 +66,7 @@ function loadConfig(configFile) {
 	// Ensure themes_path is a full filepath
 	nconf.set('themes_path', path.resolve(dirname, nconf.get('themes_path')));
 	nconf.set('core_templates_path', path.join(dirname, 'src/views'));
-	nconf.set('base_templates_path', path.join(nconf.get('themes_path'), 'nodebb-theme-persona/templates'));
+	nconf.set('base_templates_path', path.join(nconf.get('themes_path'), 'theme-persona/templates'));
 
 	nconf.set('upload_path', path.resolve(nconf.get('base_dir'), nconf.get('upload_path')));
 	nconf.set('upload_url', '/assets/uploads');
@@ -96,7 +96,7 @@ function versionCheck() {
 	var compatible = semver.satisfies(version, range);
 
 	if (!compatible) {
-		winston.warn('Your version of Node.js is too outdated for NodeBB. Please update your version of Node.js.');
+		winston.warn('Your version of Node.js is too outdated for application. Please update your version of Node.js.');
 		winston.warn('Recommended ' + range.green + ', '.reset + version.yellow + ' provided\n'.reset);
 	}
 }

@@ -47,12 +47,12 @@ define('admin/appearance/themes', ['translator', 'benchpress'], function (transl
 				if (confirm) {
 					socket.emit('admin.themes.set', {
 						type: 'local',
-						id: 'nodebb-theme-persona',
+						id: 'theme-persona',
 					}, function (err) {
 						if (err) {
 							return app.alertError(err.message);
 						}
-						highlightSelectedTheme('nodebb-theme-persona');
+						highlightSelectedTheme('theme-persona');
 						app.alert({
 							alert_id: 'admin:theme',
 							type: 'success',

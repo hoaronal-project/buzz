@@ -121,8 +121,8 @@ function getBundleMetadata(target, callback) {
 		},
 		function (themeData, next) {
 			if (target === 'client') {
-				var themeId = (themeData['theme:id'] || 'nodebb-theme-persona');
-				var baseThemePath = path.join(nconf.get('themes_path'), (themeData['theme:type'] && themeData['theme:type'] === 'local' ? themeId : 'nodebb-theme-vanilla'));
+				var themeId = (themeData['theme:id'] || 'theme-persona');
+				var baseThemePath = path.join(nconf.get('themes_path'), (themeData['theme:type'] && themeData['theme:type'] === 'local' ? themeId : 'theme-vanilla'));
 				paths.unshift(baseThemePath);
 
 				themeData.bootswatchSkin = skin || themeData.bootswatchSkin;

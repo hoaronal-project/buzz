@@ -22,7 +22,7 @@
 	"mongo.bytes-out": "Byte ngoài",
 	"mongo.num-requests": "Số lượng yêu cầu",
 	"mongo.raw-info": "Thông tin MongoDB",
-	"mongo.unauthorized": "NodeBB không thể truy vấn cơ sở dữ liệu MongoDB để thống kê có liên quan. Vui lòng đảm bảo rằng người dùng đang sử dụng bởi NodeBB chứa vai trò &quot;clusterMonitor&quot; cho cơ sở dữ liệu &quot;quản trị viên&quot;.",
+	"mongo.unauthorized": "Buzz không thể truy vấn cơ sở dữ liệu MongoDB để thống kê có liên quan. Vui lòng đảm bảo rằng người dùng đang sử dụng bởi Buzz chứa vai trò &quot;clusterMonitor&quot; cho cơ sở dữ liệu &quot;quản trị viên&quot;.",
 
 	"redis": "Redis",
 	"redis.version": "Phiên bản Redis",

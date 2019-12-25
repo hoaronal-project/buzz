@@ -113,7 +113,7 @@ module.exports = function (Plugins) {
 		await Promise.all(plugins.map(p => registerPluginAssets(p, fields)));
 	};
 
-	const themeNamePattern = /(@.*?\/)?nodebb-theme-.*$/;
+	const themeNamePattern = /(@.*?\/)?theme-.*$/;
 
 	Plugins.loadPlugin = async function (pluginPath) {
 		let pluginData;

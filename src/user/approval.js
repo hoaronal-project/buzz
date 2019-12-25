@@ -66,7 +66,7 @@ module.exports = function (User) {
 		await plugins.fireHook('filter:register.complete', { uid: uid });
 		await emailer.send('registration_accepted', uid, {
 			username: username,
-			subject: '[[email:welcome-to, ' + (meta.config.title || meta.config.browserTitle || 'NodeBB') + ']]',
+			subject: '[[email:welcome-to, ' + (meta.config.title || meta.config.browserTitle || 'Buzz') + ']]',
 			template: 'registration_accepted',
 			uid: uid,
 		});

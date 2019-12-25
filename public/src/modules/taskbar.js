@@ -151,7 +151,7 @@ define('taskbar', ['benchpress', 'translator'], function (Benchpress, translator
 
 	function createTaskbarItem(data, callback) {
 		translator.translate(data.options.title, function (taskTitle) {
-			var title = $('<div></div>').text(taskTitle || 'NodeBB Task').html();
+			var title = $('<div></div>').text(taskTitle || 'Application Task').html();
 
 			var	taskbarEl = $('<li />')
 				.addClass(data.options.className)

@@ -17,7 +17,7 @@ const privileges = require('../privileges');
 
 const dirname = require('./paths').baseDir;
 
-const themeNamePattern = /^(@.*?\/)?nodebb-theme-.*$/;
+const themeNamePattern = /^(@.*?\/)?theme-.*$/;
 const pluginNamePattern = /^(@.*?\/)?nodebb-(theme|plugin|widget|rewards)-.*$/;
 
 exports.reset = async function (options) {
@@ -29,7 +29,7 @@ exports.reset = async function (options) {
 			} else {
 				if (!themeNamePattern.test(themeId)) {
 					// Allow omission of `nodebb-theme-`
-					themeId = 'nodebb-theme-' + themeId;
+					themeId = 'theme-' + themeId;
 				}
 
 				await resetTheme(themeId);
@@ -63,7 +63,7 @@ exports.reset = async function (options) {
 	if (!tasks.length) {
 		console.log([
 			'No arguments passed in, so nothing was reset.\n'.yellow,
-			'Use ./nodebb reset ' + '{-t|-p|-w|-s|-a}'.red,
+			'Use ./node reset ' + '{-t|-p|-w|-s|-a}'.red,
 			'    -t\tthemes',
 			'    -p\tplugins',
 			'    -w\twidgets',
@@ -71,8 +71,8 @@ exports.reset = async function (options) {
 			'    -a\tall of the above',
 			'',
 			'Plugin and theme reset flags (-p & -t) can take a single argument',
-			'    e.g. ./nodebb reset -p nodebb-plugin-mentions, ./nodebb reset -t nodebb-theme-persona',
-			'         Prefix is optional, e.g. ./nodebb reset -p markdown, ./nodebb reset -t persona',
+			'    e.g. ./node reset -p nodebb-plugin-mentions, ./node reset -t theme-persona',
+			'         Prefix is optional, e.g. ./node reset -p markdown, ./node reset -t persona',
 		].join('\n'));
 
 		process.exit(0);
@@ -84,7 +84,7 @@ exports.reset = async function (options) {
 			/* eslint-disable no-await-in-loop */
 			await task();
 		}
-		winston.info('[reset] Reset complete. Please run `./nodebb build` to rebuild assets.');
+		winston.info('[reset] Reset complete. Please run `./node build` to rebuild assets.');
 		process.exit(0);
 	} catch (err) {
 		winston.error('[reset] Errors were encountered during reset -- ' + err.message);
@@ -109,7 +109,7 @@ async function resetTheme(themeId) {
 }
 
 async function resetThemes() {
-	await resetThemeTo('nodebb-theme-persona');
+	await resetThemeTo('theme-persona');
 }
 
 async function resetThemeTo(themeId) {

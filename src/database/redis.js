@@ -40,7 +40,7 @@ redisModule.init = function (callback) {
 	callback = callback || function () { };
 	redisModule.client = connection.connect(nconf.get('redis'), function (err) {
 		if (err) {
-			winston.error('NodeBB could not connect to your Redis database. Redis returned the following error', err);
+			winston.error('Application could not connect to your Redis database. Redis returned the following error', err);
 			return callback(err);
 		}
 
@@ -81,7 +81,7 @@ redisModule.checkCompatibility = function (callback) {
 
 redisModule.checkCompatibilityVersion = function (version, callback) {
 	if (semver.lt(version, '2.8.9')) {
-		return callback(new Error('Your Redis version is not new enough to support NodeBB, please upgrade Redis to v2.8.9 or higher.'));
+		return callback(new Error('Your Redis version is not new enough to support application, please upgrade Redis to v2.8.9 or higher.'));
 	}
 	callback();
 };

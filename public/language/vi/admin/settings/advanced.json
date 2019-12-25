@@ -4,8 +4,8 @@
 	"maintenance-mode.status": "Mã trạng thái chế độ bảo trì",
 	"maintenance-mode.message": "Thông điệp bảo trì",
 	"headers": "Headers",
-	"headers.allow-from": "Đặt ALLOW-FROM để đặt NodeBB trong iFrame",
-	"headers.powered-by": "Tùy chỉnh tiêu đề \"Powered By\" được gửi bởi NodeBB",
+	"headers.allow-from": "Đặt ALLOW-FROM để đặt Buzz trong iFrame",
+	"headers.powered-by": "Tùy chỉnh tiêu đề \"Powered By\" được gửi bởi Buzz",
 	"headers.acao": "Access-Control-Allow-Origin",
 	"headers.acao-regex": "Access-Control-Allow-Origin Regular Expression",
 	"headers.acao-help": "Để từ chối truy cập vào tất cả các trang web, để trống",
@@ -19,10 +19,10 @@
 	"hsts.preload": "Allow preloading of HSTS header",
 	"hsts.help": "If enabled, an HSTS header will be set for this site. You can elect to include subdomains and preloading flags in your header. If in doubt, you can leave these unchecked. <a href=\"%1\">More information <i class=\"fa fa-external-link\"></i></a>",
 	"traffic-management": "Quản lý lưu lượng",
-	"traffic.help": "NodeBB deploys equipped with a module that automatically denies requests in high-traffic situations. You can tune these settings here, although the defaults are a good starting point.",
+	"traffic.help": "Application deploys equipped with a module that automatically denies requests in high-traffic situations. You can tune these settings here, although the defaults are a good starting point.",
 	"traffic.enable": "Bật quản lý lưu lượng",
 	"traffic.event-lag": "Event Loop Lag Threshold (in milliseconds)",
 	"traffic.event-lag-help": "Lowering this value decreases wait times for page loads, but will also show the \"excessive load\" message to more users. (Restart required)",
 	"traffic.lag-check-interval": "Check Interval (in milliseconds)",
-	"traffic.lag-check-interval-help": "Lowering this value causes NodeBB to become more sensitive to spikes in load, but may also cause the check to become too sensitive. (Restart required)"
+	"traffic.lag-check-interval-help": "Lowering this value causes application to become more sensitive to spikes in load, but may also cause the check to become too sensitive. (Restart required)"
 }

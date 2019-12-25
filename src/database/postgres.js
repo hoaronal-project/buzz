@@ -36,7 +36,7 @@ postgresModule.questions = [
 	{
 		name: 'postgres:database',
 		description: 'PostgreSQL database name',
-		default: nconf.get('postgres:database') || 'nodebb',
+		default: nconf.get('postgres:database') || 'buzz',
 	},
 	{
 		name: 'postgres:ssl',
@@ -56,7 +56,7 @@ postgresModule.init = function (callback) {
 
 	db.connect(function (err, client, release) {
 		if (err) {
-			winston.error('NodeBB could not connect to your PostgreSQL database. PostgreSQL returned the following error: ' + err.message);
+			winston.error('Application could not connect to your PostgreSQL database. PostgreSQL returned the following error: ' + err.message);
 			return callback(err);
 		}
 
@@ -372,7 +372,7 @@ postgresModule.checkCompatibility = function (callback) {
 
 postgresModule.checkCompatibilityVersion = function (version, callback) {
 	if (semver.lt(version, '7.0.0')) {
-		return callback(new Error('The `pg` package is out-of-date, please run `./nodebb setup` again.'));
+		return callback(new Error('The `pg` package is out-of-date, please run `./node setup` again.'));
 	}
 
 	callback();

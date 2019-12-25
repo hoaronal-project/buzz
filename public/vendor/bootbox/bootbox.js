@@ -788,7 +788,7 @@
    */
   var locales = {
 	// ** removed all other languages
-	// ** use NodeBB translations instead
+	// ** use translations instead
     en : {
       OK      : "OK",
       CANCEL  : "Cancel",

@@ -1,0 +1,20 @@
+{
+  "name": "theme-persona",
+  "version": "10.1.30",
+  "nbbpm": {
+    "compatibility": "^1.13.0"
+  },
+  "description": "Persona theme for Buzz",
+  "main": "theme.less",
+  "keywords": [
+    "theme",
+    "forum",
+    "bootstrap",
+    "responsive"
+  ],
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "pulling": "^2.0.0",
+    "striptags": "^3.1.1"
+  }
+}

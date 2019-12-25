@@ -160,7 +160,7 @@ exports.build = function (targets, options, callback) {
 				winston.warn('[build] Unknown target: ' + target);
 				if (target.includes(',')) {
 					winston.warn('[build] Are you specifying multiple targets? Separate them with spaces:');
-					winston.warn('[build]   e.g. `./nodebb build adminjs tpl`');
+					winston.warn('[build]   e.g. `./node build adminjs tpl`');
 				}
 
 				return false;

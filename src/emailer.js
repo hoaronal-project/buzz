@@ -133,7 +133,7 @@ Emailer.registerApp = function (expressApp) {
 
 	Emailer._defaultPayload = {
 		url: nconf.get('url'),
-		site_title: meta.config.title || 'NodeBB',
+		site_title: meta.config.title || 'Buzz',
 		logo: {
 			src: logo,
 			height: meta.config['brand:emailLogo:height'],
@@ -245,7 +245,7 @@ Emailer.sendToEmail = async function (template, email, language, params) {
 		_raw: params,
 		to: email,
 		from: meta.config['email:from'] || 'no-reply@' + getHostname(),
-		from_name: meta.config['email:from_name'] || 'NodeBB',
+		from_name: meta.config['email:from_name'] || 'Buzz',
 		subject: '[' + meta.config.title + '] ' + _.unescape(subject),
 		html: html,
 		plaintext: htmlToText.fromString(html, {

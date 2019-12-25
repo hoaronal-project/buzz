@@ -74,7 +74,7 @@ module.exports = function (SocketUser) {
 			throw new Error('[[error:cant-ban-other-admins]]');
 		}
 		const username = await user.getUserField(uid, 'username');
-		const siteTitle = meta.config.title || 'NodeBB';
+		const siteTitle = meta.config.title || 'Buzz';
 		const data = {
 			subject: '[[email:banned.subject, ' + siteTitle + ']]',
 			username: username,

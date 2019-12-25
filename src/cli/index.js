@@ -77,8 +77,8 @@ var file = require('../file');
 var prestart = require('../prestart');
 
 program
-	.name('./nodebb')
-	.description('Welcome to NodeBB')
+	.name('./node')
+	.description('Welcome to Buzz')
 	.version(pkg.version)
 	.option('--json-logging', 'Output to logs in JSON format', false)
 	.option('--log-level <level>', 'Default logging level to use', 'info')
@@ -114,7 +114,7 @@ process.env.CONFIG = configFile;
 // running commands
 program
 	.command('start')
-	.description('Start the NodeBB server')
+	.description('Start the application server')
 	.action(function () {
 		require('./running').start(program);
 	});
@@ -122,7 +122,7 @@ program
 	.command('slog', null, {
 		noHelp: true,
 	})
-	.description('Start the NodeBB server and view the live output log')
+	.description('Start the application server and view the live output log')
 	.action(function () {
 		program.log = true;
 		require('./running').start(program);
@@ -131,7 +131,7 @@ program
 	.command('dev', null, {
 		noHelp: true,
 	})
-	.description('Start NodeBB in verbose development mode')
+	.description('Start application in verbose development mode')
 	.action(function () {
 		program.dev = true;
 		process.env.NODE_ENV = 'development';
@@ -140,19 +140,19 @@ program
 	});
 program
 	.command('stop')
-	.description('Stop the NodeBB server')
+	.description('Stop the application server')
 	.action(function () {
 		require('./running').stop(program);
 	});
 program
 	.command('restart')
-	.description('Restart the NodeBB server')
+	.description('Restart the application server')
 	.action(function () {
 		require('./running').restart(program);
 	});
 program
 	.command('status')
-	.description('Check the running status of the NodeBB server')
+	.description('Check the running status of the application server')
 	.action(function () {
 		require('./running').status(program);
 	});
@@ -166,7 +166,7 @@ program
 // management commands
 program
 	.command('setup [config]')
-	.description('Run the NodeBB setup script, or setup with an initial config')
+	.description('Run the application setup script, or setup with an initial config')
 	.action(function (initConfig) {
 		if (initConfig) {
 			try {
@@ -183,7 +183,7 @@ program
 
 program
 	.command('install')
-	.description('Launch the NodeBB web installer for configuration setup')
+	.description('Launch the application web installer for configuration setup')
 	.action(function () {
 		require('./setup').webInstall();
 	});
@@ -199,7 +199,7 @@ program
 	});
 program
 	.command('activate [plugin]')
-	.description('Activate a plugin for the next startup of NodeBB (nodebb-plugin- prefix is optional)')
+	.description('Activate a plugin for the next startup of application (nodebb-plugin- prefix is optional)')
 	.action(function (plugin) {
 		require('./manage').activate(plugin);
 	});
@@ -211,7 +211,7 @@ program
 	.description('List all installed plugins');
 program
 	.command('events [count]')
-	.description('Outputs the most recent administrative events recorded by NodeBB')
+	.description('Outputs the most recent administrative events recorded by application')
 	.action(function (count) {
 		require('./manage').listEvents(count);
 	});
@@ -253,18 +253,18 @@ resetCommand
 // upgrades
 program
 	.command('upgrade [scripts...]')
-	.description('Run NodeBB upgrade scripts and ensure packages are up-to-date, or run a particular upgrade script')
+	.description('Run application upgrade scripts and ensure packages are up-to-date, or run a particular upgrade script')
 	.option('-m, --package', 'Update package.json from defaults', false)
 	.option('-i, --install', 'Bringing base dependencies up to date', false)
 	.option('-p, --plugins', 'Check installed plugins for updates', false)
-	.option('-s, --schema', 'Update NodeBB data store schema', false)
+	.option('-s, --schema', 'Update application data store schema', false)
 	.option('-b, --build', 'Rebuild assets', false)
 	.on('--help', function () {
 		console.log('\n' + [
 			'When running particular upgrade scripts, options are ignored.',
 			'By default all options are enabled. Passing any options disables that default.',
-			'Only package and dependency updates: ' + './nodebb upgrade -mi'.yellow,
-			'Only database update: ' + './nodebb upgrade -s'.yellow,
+			'Only package and dependency updates: ' + './node upgrade -mi'.yellow,
+			'Only database update: ' + './node upgrade -s'.yellow,
 		].join('\n'));
 	})
 	.action(function (scripts, options) {

@@ -24,7 +24,7 @@ module.exports = function (middleware) {
 		res.status(meta.config.maintenanceModeStatus);
 
 		const data = {
-			site_title: meta.config.title || 'NodeBB',
+			site_title: meta.config.title || 'Buzz',
 			message: meta.config.maintenanceModeMessage,
 		};
 

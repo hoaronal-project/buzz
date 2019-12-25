@@ -19,7 +19,7 @@ const utils = require('../../public/src/utils');
 
 const Themes = module.exports;
 
-const themeNamePattern = /^(@.*?\/)?nodebb-theme-.*$/;
+const themeNamePattern = /^(@.*?\/)?theme-.*$/;
 
 Themes.get = async () => {
 	const themePath = nconf.get('themes_path');
@@ -97,7 +97,7 @@ Themes.set = async (data) => {
 			await db.sortedSetRemove('plugins:active', current);
 			const numPlugins = await db.sortedSetCard('plugins:active');
 			await db.sortedSetAdd('plugins:active', numPlugins, data.id);
-			// Re-set the themes path (for when NodeBB is reloaded)
+			// Re-set the themes path (for when application is reloaded)
 			Themes.setPath(config);
 
 			await Meta.configs.setMultiple({
@@ -135,7 +135,7 @@ Themes.setupPaths = async () => {
 		currentThemeId: Meta.configs.get('theme:id'),
 	});
 
-	let themeId = data.currentThemeId || 'nodebb-theme-persona';
+	let themeId = data.currentThemeId || 'theme-persona';
 
 	if (process.env.NODE_ENV === 'development') {
 		winston.info('[themes] Using theme ' + themeId);

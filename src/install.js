@@ -17,7 +17,7 @@ var questions = {};
 questions.main = [
 	{
 		name: 'url',
-		description: 'URL used to access this NodeBB',
+		description: 'URL used to access this application',
 		default:
 			nconf.get('url') || 'http://localhost:4567',
 		pattern: /^http(?:s)?:\/\//,
@@ -25,7 +25,7 @@ questions.main = [
 	},
 	{
 		name: 'secret',
-		description: 'Please enter a NodeBB secret',
+		description: 'Please enter a secret',
 		default: nconf.get('secret') || utils.generateUUID(),
 	},
 	{
@@ -238,7 +238,7 @@ function enableDefaultTheme(next) {
 			console.log('Previous theme detected, skipping enabling default theme');
 			return next(err);
 		}
-		var defaultTheme = nconf.get('defaultTheme') || 'nodebb-theme-persona';
+		var defaultTheme = nconf.get('defaultTheme') || 'theme-persona';
 		console.log('Enabling default theme: ' + defaultTheme);
 		meta.themes.set({
 			type: 'local',
@@ -486,7 +486,7 @@ function createWelcomePost(next) {
 			Topics.post({
 				uid: 1,
 				cid: 2,
-				title: 'Welcome to your NodeBB!',
+				title: 'Welcome to your Application!',
 				content: content,
 			}, next);
 		} else {
@@ -582,7 +582,7 @@ install.setup = function (callback) {
 		},
 	], function (err, results) {
 		if (err) {
-			winston.warn('NodeBB Setup Aborted.\n ' + err.stack);
+			winston.warn('Application Setup Aborted.\n ' + err.stack);
 			process.exit(1);
 		} else {
 			var data = {};

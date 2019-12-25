@@ -1,26 +1,26 @@
 'use strict';
 
-var winston = require('winston');
-var express = require('express');
-var bodyParser = require('body-parser');
-var fs = require('fs');
-var path = require('path');
-var childProcess = require('child_process');
-var less = require('less');
-var async = require('async');
-var uglify = require('uglify-es');
-var nconf = require('nconf');
-var Benchpress = require('benchpressjs');
+const winston = require('winston');
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
+const childProcess = require('child_process');
+const less = require('less');
+const async = require('async');
+const uglify = require('uglify-es');
+const nconf = require('nconf');
+const Benchpress = require('benchpressjs');
 
-var app = express();
-var server;
+const app = express();
+let server;
 
-var formats = [
+const formats = [
 	winston.format.colorize(),
 ];
 
 const timestampFormat = winston.format((info) => {
-	var dateString = new Date().toISOString() + ' [' + global.process.pid + ']';
+	let dateString = new Date().toISOString() + ' [' + global.process.pid + ']';
 	info.level = dateString + ' - ' + info.level;
 	return info;
 });
@@ -42,9 +42,9 @@ winston.configure({
 	],
 });
 
-var web = module.exports;
+const web = module.exports;
 
-var scripts = [
+const scripts = [
 	'node_modules/jquery/dist/jquery.js',
 	'public/vendor/xregexp/xregexp.js',
 	'public/vendor/xregexp/unicode/unicode-base.js',
@@ -53,10 +53,10 @@ var scripts = [
 	'node_modules/zxcvbn/dist/zxcvbn.js',
 ];
 
-var installing = false;
-var success = false;
-var error = false;
-var launchUrl;
+let installing = false;
+let success = false;
+let error = false;
+let launchUrl;
 
 web.install = function (port) {
 	port = port || 4567;
@@ -108,9 +108,9 @@ function ping(req, res) {
 }
 
 function welcome(req, res) {
-	var dbs = ['redis', 'mongo', 'postgres'];
-	var databases = dbs.map(function (databaseName) {
-		var questions = require('../src/database/' + databaseName).questions.filter(function (question) {
+	const dbs = ['redis', 'mongo', 'postgres'];
+	const databases = dbs.map(function (databaseName) {
+		const questions = require('../src/database/' + databaseName).questions.filter(function (question) {
 			return question && !question.hideOnWebInstall;
 		});
 
@@ -120,7 +120,7 @@ function welcome(req, res) {
 		};
 	});
 
-	var defaults = require('./data/defaults');
+	let defaults = require('./data/defaults');
 
 	res.render('install/index', {
 		url: nconf.get('url') || (req.protocol + '://' + req.get('host')),
@@ -143,8 +143,8 @@ function install(req, res) {
 	}
 	req.setTimeout(0);
 	installing = true;
-	var setupEnvVars = nconf.get();
-	for (var i in req.body) {
+	let setupEnvVars = nconf.get();
+	for (let i in req.body) {
 		if (req.body.hasOwnProperty(i) && !process.env.hasOwnProperty(i)) {
 			setupEnvVars[i.replace(':', '__')] = req.body[i];
 		}
@@ -154,7 +154,7 @@ function install(req, res) {
 	const pushToRoot = function (parentKey, key) {
 		setupEnvVars[parentKey + '__' + key] = setupEnvVars[parentKey][key];
 	};
-	for (var j in setupEnvVars) {
+	for (let j in setupEnvVars) {
 		if (setupEnvVars.hasOwnProperty(j) && typeof setupEnvVars[j] === 'object' && setupEnvVars[j] !== null && !Array.isArray(setupEnvVars[j])) {
 			Object.keys(setupEnvVars[j]).forEach(pushToRoot.bind(null, j));
 			delete setupEnvVars[j];
@@ -167,7 +167,7 @@ function install(req, res) {
 	winston.info(setupEnvVars);
 	launchUrl = setupEnvVars.url;
 
-	var child = require('child_process').fork('app', ['--setup'], {
+	let child = require('child_process').fork('app', ['--setup'], {
 		env: setupEnvVars,
 	});
 
@@ -184,7 +184,7 @@ function launch(req, res) {
 	res.json({});
 	server.close();
 	req.setTimeout(0);
-	var child;
+	let child;
 
 	if (!nconf.get('launchCmd')) {
 		child = childProcess.spawn('node', ['loader.js'], {
@@ -192,10 +192,10 @@ function launch(req, res) {
 			stdio: ['ignore', 'ignore', 'ignore'],
 		});
 
-		console.log('\nStarting NodeBB');
-		console.log('    "./nodebb stop" to stop the NodeBB server');
-		console.log('    "./nodebb log" to view server output');
-		console.log('    "./nodebb restart" to restart NodeBB');
+		console.log('\nStarting application');
+		console.log('    "./node stop" to stop the application server');
+		console.log('    "./node log" to view server output');
+		console.log('    "./node restart" to restart application');
 	} else {
 		// Use launchCmd instead, if specified
 		child = childProcess.exec(nconf.get('launchCmd'), {
@@ -204,7 +204,7 @@ function launch(req, res) {
 		});
 	}
 
-	var filesToDelete = [
+	let filesToDelete = [
 		'installer.css',
 		'installer.min.js',
 		'bootstrap.min.css',
@@ -239,7 +239,7 @@ function compileLess(callback) {
 }
 
 function compileJS(callback) {
-	var code = '';
+	let code = '';
 	async.eachSeries(scripts, function (srcPath, next) {
 		fs.readFile(path.join(__dirname, '..', srcPath), function (err, buffer) {
 			if (err) {
@@ -254,7 +254,7 @@ function compileJS(callback) {
 			return callback(err);
 		}
 		try {
-			var minified = uglify.minify(code, {
+			let minified = uglify.minify(code, {
 				compress: false,
 			});
 			if (!minified.code) {
@@ -279,7 +279,7 @@ function copyCSS(next) {
 }
 
 function loadDefaults(next) {
-	var setupDefaultsPath = path.join(__dirname, '../setup.json');
+	let setupDefaultsPath = path.join(__dirname, '../setup.json');
 	fs.access(setupDefaultsPath, fs.constants.F_OK | fs.constants.R_OK, function (err) {
 		if (err) {
 			// setup.json not found or inaccessible, proceed with no defaults
