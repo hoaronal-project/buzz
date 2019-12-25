@@ -11,7 +11,6 @@ const fsReaddir = util.promisify(fs.readdir);
 const fsStat = util.promisify(fs.stat);
 const fsReadfile = util.promisify(fs.readFile);
 
-
 const file = require('../file');
 const db = require('../database');
 const Meta = require('../meta');
@@ -31,9 +30,7 @@ Themes.get = async () => {
 	}
 
 	let themes = await getThemes(themePath);
-	console.log('themes 1 ====> :', themes)
 	themes = _.flatten(themes).filter(Boolean);
-
 	themes = await Promise.all(themes.map(async (theme) => {
 		const config = path.join(themePath, theme, 'theme.json');
 		try {
@@ -78,7 +75,6 @@ async function getThemes(themePath) {
 			}
 
 			const themes = await getThemes(path.join(themePath, dir));
-			console.log('themePath 2 ====> :', themes)
 			return themes.map(theme => path.join(dir, theme));
 		} catch (err) {
 			if (err.code === 'ENOENT') {
@@ -139,13 +135,13 @@ Themes.setupPaths = async () => {
 		currentThemeId: Meta.configs.get('theme:id'),
 	});
 
-	var themeId = data.currentThemeId || 'nodebb-theme-persona';
+	let themeId = data.currentThemeId || 'nodebb-theme-persona';
 
 	if (process.env.NODE_ENV === 'development') {
 		winston.info('[themes] Using theme ' + themeId);
 	}
 
-	var themeObj = data.themesData.find(function (themeObj) {
+	let themeObj = data.themesData.find(function (themeObj) {
 		return themeObj.id === themeId;
 	});
 
@@ -158,15 +154,14 @@ Themes.setupPaths = async () => {
 
 Themes.setPath = function (themeObj) {
 	// Theme's templates path
-	var themePath = nconf.get('base_templates_path');
-	var fallback = path.join(nconf.get('themes_path'), themeObj.id, 'templates');
+	let themePath = nconf.get('base_templates_path');
+	let fallback = path.join(nconf.get('themes_path'), themeObj.id, 'templates');
 
 	if (themeObj.templates) {
 		themePath = path.join(nconf.get('themes_path'), themeObj.id, themeObj.templates);
 	} else if (file.existsSync(fallback)) {
 		themePath = fallback;
 	}
-
 	nconf.set('theme_templates_path', themePath);
 	nconf.set('theme_config', path.join(nconf.get('themes_path'), themeObj.id, 'theme.json'));
 };
