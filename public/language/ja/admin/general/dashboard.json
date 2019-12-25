@@ -23,7 +23,7 @@
 	"stats.all": "全て",
 
 	"updates": "更新",
-	"running-version": "<strong>NodeBB v<span id=\"version\">%1</span></strong> を実行しています。",
+	"running-version": "<strong> v<span id=\"version\">%1</span></strong> を実行しています。",
 	"keep-updated": "常に最新のセキュリティパッチとバグ修正のためにNodeBBが最新であることを確認してください。",
 	"up-to-date": "<p>あなたは<strong>最新の状態</strong>です。<i class=\"fa fa-check\"></i></p>",
 	"upgrade-available": "<p>A new version (v%1) has been released. Consider <a href=\"https://docs.nodebb.org/configuring/upgrade/\" target=\"_blank\">upgrading your NodeBB</a>.</p>",

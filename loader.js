@@ -122,8 +122,8 @@ Loader.start = function (callback) {
 };
 
 function forkWorker(index, isPrimary) {
-	var ports = getPorts();
-	var args = [];
+	let ports = getPorts();
+	let args = [];
 
 	if (!ports[index]) {
 		return console.log('[cluster] invalid port for worker : ' + index + ' ports: ' + ports.length);
@@ -133,7 +133,7 @@ function forkWorker(index, isPrimary) {
 	process.env.isCluster = nconf.get('isCluster') || ports.length > 1;
 	process.env.port = ports[index];
 
-	var worker = fork(appPath, args, {
+	let worker = fork(appPath, args, {
 		silent: silent,
 		env: process.env,
 	});
@@ -153,13 +153,13 @@ function forkWorker(index, isPrimary) {
 }
 
 function getPorts() {
-	var _url = nconf.get('url');
+	let _url = nconf.get('url');
 	if (!_url) {
 		console.log('[cluster] url is undefined, please check your config.json');
 		process.exit();
 	}
-	var urlObject = url.parse(_url);
-	var port = nconf.get('PORT') || nconf.get('port') || urlObject.port || 4567;
+	let urlObject = url.parse(_url);
+	let port = nconf.get('PORT') || nconf.get('port') || urlObject.port || 4567;
 	if (!Array.isArray(port)) {
 		port = [port];
 	}
@@ -178,7 +178,7 @@ Loader.restart = function () {
 			throw err;
 		}
 
-		var conf = JSON.parse(configFile);
+		let conf = JSON.parse(configFile);
 
 		nconf.stores.env.readOnly = false;
 		nconf.set('url', conf.url);
