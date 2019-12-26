@@ -252,15 +252,16 @@ function SemVer(version, loose) {
     throw new TypeError('Invalid Version: ' + version);
   }
 
-  if (!(this instanceof SemVer))
-    return new SemVer(version, loose);
+  if (!(this instanceof SemVer)){
+	  return new SemVer(version, loose);
+  }
 
-  ;
   this.loose = loose;
-  var m = version.trim().match(loose ? re[LOOSE] : re[FULL]);
+  const m = version.trim().match(loose ? re[LOOSE] : re[FULL]);
 
-  if (!m)
-    throw new TypeError('Invalid Version: ' + version);
+  if (!m){
+	  throw new TypeError('Invalid Version: ' + version);
+  }
 
   this.raw = version;
 

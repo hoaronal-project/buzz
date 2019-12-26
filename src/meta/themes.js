@@ -23,14 +23,13 @@ const themeNamePattern = /^(@.*?\/)?theme-.*$/;
 
 Themes.get = async () => {
 	const themePath = nconf.get('themes_path');
-
-	console.log('themePath 1 ====> :', themePath)
 	if (typeof themePath !== 'string') {
 		return [];
 	}
 
 	let themes = await getThemes(themePath);
-	themes = _.flatten(themes).filter(Boolean);
+	themes = _.flatten(themes)
+		.filter(Boolean);
 	themes = await Promise.all(themes.map(async (theme) => {
 		const config = path.join(themePath, theme, 'theme.json');
 		try {
@@ -135,13 +134,13 @@ Themes.setupPaths = async () => {
 		currentThemeId: Meta.configs.get('theme:id'),
 	});
 
-	let themeId = data.currentThemeId || 'theme-persona';
+	const themeId = data.currentThemeId || 'theme-persona';
 
 	if (process.env.NODE_ENV === 'development') {
 		winston.info('[themes] Using theme ' + themeId);
 	}
 
-	let themeObj = data.themesData.find(function (themeObj) {
+	const themeObj = data.themesData.find(function (themeObj) {
 		return themeObj.id === themeId;
 	});
 
@@ -155,7 +154,7 @@ Themes.setupPaths = async () => {
 Themes.setPath = function (themeObj) {
 	// Theme's templates path
 	let themePath = nconf.get('base_templates_path');
-	let fallback = path.join(nconf.get('themes_path'), themeObj.id, 'templates');
+	const fallback = path.join(nconf.get('themes_path'), themeObj.id, 'templates');
 
 	if (themeObj.templates) {
 		themePath = path.join(nconf.get('themes_path'), themeObj.id, themeObj.templates);

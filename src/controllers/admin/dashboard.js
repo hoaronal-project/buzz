@@ -1,11 +1,8 @@
 'use strict';
 
 const nconf = require('nconf');
-const semver = require('semver');
-const winston = require('winston');
 const _ = require('lodash');
 
-const versions = require('../../admin/versions');
 const db = require('../../database');
 const meta = require('../../meta');
 const analytics = require('../../analytics').async;
@@ -16,20 +13,15 @@ const utils = require('../../utils');
 const dashboardController = module.exports;
 
 dashboardController.get = async function (req, res) {
-	const [stats, notices, latestVersion, lastrestart] = await Promise.all([
+	const [stats, notices, lastrestart] = await Promise.all([
 		getStats(),
 		getNotices(),
-		getLatestVersion(),
 		getLastRestart(),
 	]);
 	const version = nconf.get('version');
-
 	res.render('admin/general/dashboard', {
 		version: version,
-		lookupFailed: latestVersion === null,
-		latestVersion: latestVersion,
-		upgradeAvailable: latestVersion && semver.gt(latestVersion, version),
-		currentPrerelease: versions.isPrerelease.test(version),
+		lookupFailed: false,
 		notices: notices,
 		stats: stats,
 		canRestart: !!process.send,
@@ -61,16 +53,6 @@ async function getNotices() {
 	}
 
 	return await plugins.fireHook('filter:admin.notices', notices);
-}
-
-async function getLatestVersion() {
-	try {
-		const result = await versions.getLatestVersion();
-		return result;
-	} catch (err) {
-		winston.error('[acp] Failed to fetch latest version', err);
-	}
-	return null;
 }
 
 dashboardController.getAnalytics = async (req, res, next) => {

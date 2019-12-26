@@ -45,15 +45,6 @@
 				<button class="btn btn-default btn-block" id="plugin-order"><i class="fa fa-exchange"></i> [[admin/extend/plugins:order-active]]</button>
 			</div>
 		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">[[admin/extend/plugins:dev-interested]]</div>
-			<div class="panel-body">
-				<p>
-					[[admin/extend/plugins:docs-info]]
-				</p>
-			</div>
-		</div>
 	</div>
 
 	<div class="col-lg-9 col-lg-pull-3">

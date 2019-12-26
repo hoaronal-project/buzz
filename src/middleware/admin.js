@@ -1,17 +1,15 @@
 'use strict';
 
-var async = require('async');
-var winston = require('winston');
-var jsesc = require('jsesc');
-var nconf = require('nconf');
-var semver = require('semver');
+const async = require('async');
+const winston = require('winston');
+const jsesc = require('jsesc');
+const nconf = require('nconf');
 
-var user = require('../user');
-var meta = require('../meta');
-var plugins = require('../plugins');
-var versions = require('../admin/versions');
+const user = require('../user');
+const meta = require('../meta');
+const plugins = require('../plugins');
 
-var controllers = {
+const controllers = {
 	api: require('../controllers/api'),
 	helpers: require('../controllers/helpers'),
 };
@@ -58,15 +56,6 @@ module.exports = function (middleware) {
 					configs: function (next) {
 						meta.configs.list(next);
 					},
-					latestVersion: function (next) {
-						versions.getLatestVersion(function (err, result) {
-							if (err) {
-								winston.error('[acp] Failed to fetch latest version', err);
-							}
-
-							next(null, err ? null : result);
-						});
-					},
 				}, next);
 			},
 			function (results, next) {
@@ -98,8 +87,6 @@ module.exports = function (middleware) {
 					title: (acpPath || 'Dashboard') + ' | Admin Control Panel',
 					bodyClass: data.bodyClass,
 					version: version,
-					latestVersion: results.latestVersion,
-					upgradeAvailable: results.latestVersion && semver.gt(results.latestVersion, version),
 				};
 
 				templateValues.template = { name: res.locals.template };

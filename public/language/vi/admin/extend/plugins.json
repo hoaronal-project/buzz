@@ -12,8 +12,6 @@
 	"submit-anonymous-usage": "Gửi dữ liệu sử dụng plugin ẩn danh.",
 	"reorder-plugins": "Đặt hàng lại plugin",
 	"order-active": "Đặt hàng các plugin hoạt động",
-	"dev-interested": "Quan tâm đến việc viết plugin?",
-	"docs-info": "Full documentation regarding plugin authoring can be found in the <a target=\"_blank\" href=\"\">Docs Portal</a>.",
 
 	"order.description": "Certain plugins work ideally when they are initialised before/after other plugins.",
 	"order.explanation": "Plugins load in the order specified here, from top to bottom",

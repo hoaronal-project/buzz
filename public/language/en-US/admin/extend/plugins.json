@@ -12,8 +12,6 @@
 	"submit-anonymous-usage": "Submit anonymous plugin usage data.",
 	"reorder-plugins": "Re-order Plugins",
 	"order-active": "Order Active Plugins",
-	"dev-interested": "Interested in writing plugins for application?",
-	"docs-info": "",
 
 	"order.description": "Certain plugins work ideally when they are initialized before/after other plugins.",
 	"order.explanation": "Plugins load in the order specified here, from top to bottom",

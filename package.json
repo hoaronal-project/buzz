@@ -2,7 +2,7 @@
   "name": "buzz",
   "license": "GPL-3.0",
   "description": "Buzz Forum",
-  "version": "1.13.0",
+  "version": "1.0",
   "main": "app.js",
   "scripts": {
     "start": "node loader.js",

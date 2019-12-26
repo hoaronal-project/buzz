@@ -47,8 +47,8 @@ mongoModule.questions = [
 	{
 		name: 'mongo:password',
 		description: 'Password of your MongoDB database',
-		default: nconf.get('mongo:password') || 'buzz',
-		hidden: false,
+		default: nconf.get('mongo:password') || '',
+		hidden: true,
 		ask: isUriNotSpecified,
 		before: function (value) { value = value || nconf.get('mongo:password') || ''; return value; },
 	},
